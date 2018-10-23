@@ -145,7 +145,6 @@ $base_url = str_replace('servicepdf/', '', $config['base_url']);
 				ctx_global.closePath();
 
 				getCoordinate();
-				//getPointer();
 			}
 
 			function getCoordinate() {
@@ -153,13 +152,6 @@ $base_url = str_replace('servicepdf/', '', $config['base_url']);
 				document.getElementById("lly").value = lly / scale;
 				document.getElementById("urx").value = urx / scale;
 				document.getElementById("ury").value = ury / scale;
-			}
-
-			function getPointer(){
-				document.getElementById("x1").value = point_x1;
-				document.getElementById("y1").value = point_y1;
-				document.getElementById("x2").value = point_x2;
-				document.getElementById("y2").value = point_y2;
 			}
 
 			function color(obj) {
@@ -234,7 +226,6 @@ $base_url = str_replace('servicepdf/', '', $config['base_url']);
 						drawRect();
 					}
 				}
-
 			}
 
 			var img_list = [];
@@ -396,17 +387,12 @@ $base_url = str_replace('servicepdf/', '', $config['base_url']);
 
 					window.pathx = "<?=$val_id;?>";
 					Module.getPDF("<?=$val_id;?>");
-					// Module.getPDF("pdf/20170821090035562.pdf");
-
-					// OnLoad();
 				}
 			};
 		</script>
 
 		<script>
 			function changePage(choice) {
-				// alert("Before OP : " + the_curr_page);
-
 				if (choice == 'prev') {
 					if (the_curr_page > 0)
 					{
@@ -441,53 +427,12 @@ $base_url = str_replace('servicepdf/', '', $config['base_url']);
 					}
 				}
 
-				// alert("After OP : " + the_curr_page);
 				return;
 			}
 		</script>
-
-		<script type="text/javascript" id="viewsonic">
-			var after_trigger = 0;
-			// var timer = setInterval(function(){ newImage.src = "C:/Users/H8911E/Desktop/package/bin/sig1.png?" + new Date().getTime();},500);
-
-			function S4() {
-    			return (((1+Math.random())*0x10000)|0).toString(16).substring(1);
-			}
-
-			function myTimer()
-			{
-				$.ajax({
-					type: "POST",
-					url: "http://202.46.3.34/sisumaker/uploads/surat_intern/test1.php",
-					data: "clean",
-					dataType: "application/json",
-					success: function(data){
-						console.log("success");
-  						var tmp = JSON.parse(data);
-						var newImage = document.getElementById('newImage');
-						newImage.src='data:image/png;base64,'+tmp.data;
-					},
-				});
-			}
-
-			function cleanImg()
-			{
-				$.ajax({
-					type: "POST",
-					url: "http://202.46.3.34/sisumaker/uploads/surat_intern/test1.php",
-					data: "clean",
-					dataType: "application/json",
-					success: function(data){
-						console.log("clean");
-					},
-				});
-			}
-
-		</script>
-
+		
 		<script src="pdfium.js"></script>
 		<script src="jquery-3.2.1.min.js"></script>
-		<script src="base64.js"></script>
 	</body>
 
 </html>
