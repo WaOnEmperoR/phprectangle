@@ -24,40 +24,45 @@ $base_url = str_replace('servicepdf/', '', $config['base_url']);
 			$my_UNIQID = uniqid("sisumaker_");
 		?>
 
-		<div align="center">
-			<canvas id="the-canvas" style="border:2px solid;"></canvas>
-			<br/>
-			<span>
-				<button type="button" style="font-size:24px" id="prev_btn" onclick="changePage('prev')"><i class="fa fa-arrow-circle-o-left"></i> PREV</button>
-				<input type="number" id="curr_page" style="text-align:center;" disabled>
-				<button type="button" style="font-size:24px" id="next_btn" onclick="changePage('next')">NEXT <i class="fa fa-arrow-circle-o-right"></i></button>
-			</span>
-		</div>
-
-		<div>
-			<div>
-				<input type="hidden" id="x1" disabled>
-				<input type="hidden" id="y1" disabled>
-				<input type="hidden" id="x2" disabled>
-				<input type="hidden" id="y2" disabled>
-			</div>
-			<div>
-				<input type="hidden" id="kotak_left" disabled>
-				<input type="hidden" id="kotak_top" disabled>
-				<input type="hidden" id="kotak_right" disabled>
-				<input type="hidden" id="kotak_bottom" disabled>
-			</div>
-			<div>
-				<input type="text" id="llx" disabled>
-				<input type="text" id="lly" disabled>
-				<input type="text" id="urx" disabled>
-				<input type="text" id="ury" disabled>
-			</div>
-			<div>
-				<input type="hidden" id="nomor_cantik" disabled>
+		<form action="imagewrite.php" method="post">
+			<div align="center">
+				<canvas id="the-canvas" style="border:2px solid;"></canvas>
+				<br/>
+				<span>
+					<button type="button" style="font-size:24px" id="prev_btn" onclick="changePage('prev')"><i class="fa fa-arrow-circle-o-left"></i> PREV</button>
+					<input type="number" id="curr_page" style="text-align:center;" disabled>
+					<button type="button" style="font-size:24px" id="next_btn" onclick="changePage('next')">NEXT <i class="fa fa-arrow-circle-o-right"></i></button>
+				</span>
 			</div>
 
-		</div>
+			<div>
+				<div>
+					<input type="hidden" id="x1" disabled>
+					<input type="hidden" id="y1" disabled>
+					<input type="hidden" id="x2" disabled>
+					<input type="hidden" id="y2" disabled>
+				</div>
+				<div>
+					<input type="hidden" id="kotak_left" disabled>
+					<input type="hidden" id="kotak_top" disabled>
+					<input type="hidden" id="kotak_right" disabled>
+					<input type="hidden" id="kotak_bottom" disabled>
+				</div>
+				<div>
+					<input type="text" name="position[]" id="llx" readonly>
+					<input type="text" name="position[]" id="lly" readonly>
+					<input type="text" name="position[]" id="urx" readonly>
+					<input type="text" name="position[]" id="ury" readonly>
+				</div>
+				<div>
+					<input type="hidden" id="nomor_cantik" readonly>
+				</div>
+			</div>
+
+			<input type="submit" value="Submit">
+
+		</form>
+		
 
 		<script>
 			var canvas_global, ctx_global, flag = false,
@@ -325,6 +330,8 @@ $base_url = str_replace('servicepdf/', '', $config['base_url']);
 										var page = PDFiumJS.C.Doc_get_page(cur_doc, cur_page);
 										var width = PDFiumJS.C.Page_get_width(page);
 										var height = PDFiumJS.C.Page_get_height(page);
+										console.log("width : " + width);
+										console.log("height : " + height);
 										canvas.style.width = width + 'px';
 										canvas.style.height = height + 'px';
 
