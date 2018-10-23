@@ -30,7 +30,7 @@ $base_url = str_replace('servicepdf/', '', $config['base_url']);
 				<br/>
 				<span>
 					<button type="button" style="font-size:24px" id="prev_btn" onclick="changePage('prev')"><i class="fa fa-arrow-circle-o-left"></i> PREV</button>
-					<input type="number" id="curr_page" style="text-align:center;" disabled>
+					<input type="number" id="curr_page" name="curr_page" style="text-align:center;" readonly>
 					<button type="button" style="font-size:24px" id="next_btn" onclick="changePage('next')">NEXT <i class="fa fa-arrow-circle-o-right"></i></button>
 				</span>
 			</div>
@@ -53,9 +53,19 @@ $base_url = str_replace('servicepdf/', '', $config['base_url']);
 					<input type="text" name="position[]" id="lly" readonly>
 					<input type="text" name="position[]" id="urx" readonly>
 					<input type="text" name="position[]" id="ury" readonly>
+					<input type="text" name="position[]" id="lly_translated" readonly>
+					<input type="text" name="position[]" id="ury_translated" readonly>
+				</div>
+				<div>
+					<input type="text" name="pos_trans[]" id="pt_ulx" readonly>
+					<input type="text" name="pos_trans[]" id="pt_uly" readonly>
+					<input type="text" name="pos_trans[]" id="pt_lrx" readonly>
+					<input type="text" name="pos_trans[]" id="pt_lry" readonly>
 				</div>
 				<div>
 					<input type="hidden" id="nomor_cantik" readonly>
+					<input type="hidden" id="pg_width" name="pg_width" readonly>
+					<input type="hidden" id="pg_height" name="pg_height" readonly>
 				</div>
 			</div>
 
@@ -88,6 +98,9 @@ $base_url = str_replace('servicepdf/', '', $config['base_url']);
 				h = canvas_global.height;
 
 				document.getElementById("nomor_cantik").value = '<?php echo ($my_UNIQID); ?>';
+
+				document.getElementById("pg_width").value = w;
+				document.getElementById("pg_height").value = h;
 
 				console.log('Device pixel ratio original : ' + window.devicePixelRatio);
 				dvcRatio = Math.round(window.devicePixelRatio);
@@ -157,6 +170,13 @@ $base_url = str_replace('servicepdf/', '', $config['base_url']);
 				document.getElementById("lly").value = lly / scale;
 				document.getElementById("urx").value = urx / scale;
 				document.getElementById("ury").value = ury / scale;
+				document.getElementById("lly_translated").value = (h - lly) / scale;
+				document.getElementById("ury_translated").value = (h - ury) / scale;
+
+				document.getElementById("pt_ulx").value = llx / scale;
+				document.getElementById("pt_uly").value = (h - ury) / scale;
+				document.getElementById("pt_lrx").value = urx / scale;
+				document.getElementById("pt_lry").value = (h - lly) / scale;
 			}
 
 			function color(obj) {
