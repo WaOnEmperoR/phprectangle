@@ -30,5 +30,5 @@
     $height = $_POST['pg_height'];
     $curr_page = $_POST['curr_page'];
 
-    generatePDF("pdf/contoh.pdf", "pdf/export.pdf", "Hello world", "image/10 Besar.jpg", $pos_trans, $width, $height, $curr_page);
+    generatePDF("pdf/contohTN.pdf", "pdf/export.pdf", "Hello world", "image/10 Besar.jpg", $pos_trans, $width, $height, $curr_page);
 ?>
